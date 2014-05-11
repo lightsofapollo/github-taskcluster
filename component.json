@@ -15,7 +15,6 @@
     "lightsofapollo/superagent-promise": "~0.1.1",
     "visionmedia/co": "*",
     "polyfills/setimmediate.js": "^1.0.1",
-    "lightsofapollo/octokit.js": "component",
-    "lightsofapollo/co-promise": "*"
+    "lightsofapollo/octokit.js": "component"
   }
 }

@@ -1,6 +1,6 @@
 var Vue = require('vue');
 var session = require('../store/github_session')();
-var co = require('co-promise');
+var co = require('co');
 
 module.exports = Vue.extend({
   template: require('./header.html'),
@@ -16,11 +16,11 @@ module.exports = Vue.extend({
     },
 
     logout: function() {
-      var data = this.$data;
       co(function* () {
-        data.githubUser = null;
+        this.$data.githubUser = null;
         yield session.destroy();
-      });
+        throw new Error('catch me?');
+      }).call(this);
     },
   },
 

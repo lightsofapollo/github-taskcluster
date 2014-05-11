@@ -1,7 +1,7 @@
 // shared views across all routes
 require('setimmediate.js');
 
-var co = require('co-promise');
+var co = require('co');
 var Vue = require('vue');
 var Header = require('./views/header');
 var forage = require('localforage');
@@ -31,6 +31,6 @@ co(function* () {
     // set the current github user
     require('./controllers/github')(app)
   ];
-});
+})();
 
 module.exports = app;
