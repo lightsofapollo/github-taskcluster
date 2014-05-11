@@ -1,0 +1,32 @@
+{
+  "name": "github-taskcluster",
+  "version": "0.0.0",
+  "description": "Github + Taskcluster Integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "keywords": [
+    "github",
+    "taskcluster",
+    "treeherder"
+  ],
+  "author": "James Lal [:lightsofapollo]",
+  "license": "MIT",
+  "dependencies": {
+    "component": "^1.0.0-rc5",
+    "koa": "^0.6.0",
+    "koa-body-parser": "^1.0.0",
+    "koa-bodyparser": "^1.0.1",
+    "koa-router": "^3.1.3",
+    "koa-send": "^1.2.3",
+    "koa-static": "^1.4.5",
+    "koa-trie-router": "^1.0.5",
+    "promise": "^5.0.0",
+    "superagent": "^0.18.0",
+    "superagent-promise": "^0.1.1"
+  },
+  "devDependencies": {
+    "component-koa": "^1.0.0"
+  }
+}
