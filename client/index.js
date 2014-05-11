@@ -2,9 +2,8 @@
 require('setimmediate.js');
 
 var co = require('co');
+var session = require('./store/github_session')();
 var Vue = require('vue');
-var Header = require('./views/header');
-var forage = require('localforage');
 
 // allow users to hit / but replace state /ui/ the entrypoint of pushstate...
 if (document.location.pathname.indexOf('/ui/') !== 0) {
@@ -26,10 +25,11 @@ var app = new Vue({
 });
 
 co(function* () {
+  var githubController = require('./controllers/github')(app, session);
+
   // initialize controllers
   yield [
-    // set the current github user
-    require('./controllers/github')(app)
+    githubController.initialize()
   ];
 })();
 

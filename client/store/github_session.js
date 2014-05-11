@@ -16,6 +16,11 @@ module.exports = function() {
       ];
     },
 
+    getClient: function* () {
+      var credentails = yield this.getCredentials();
+      return Octokit.new({ token: credentails.access_token });
+    },
+
     hasCredentials: function *() {
       return !!(yield this.getCredentials());
     },
