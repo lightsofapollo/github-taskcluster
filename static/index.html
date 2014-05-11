@@ -8,6 +8,7 @@
 <body>
 
 <app-header v-with="githubUser : githubUser, githubError: githubError"></app-header>
+<add-repository v-if="githubUser"></add-repository>
 
 <script src="/build/build.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">

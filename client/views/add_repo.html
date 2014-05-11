@@ -1,0 +1,15 @@
+<form v-on="submit: onAdd">
+  <section v-if="error" class="error">
+    <p v-text="error"></p>
+  </section>
+
+  <label for="add-repository-input">Add repository<label>
+  <input
+    autofocus
+    placeholder="user/repo"
+    v-model="repository"
+    id="add-repository-input"
+    type="text" />
+
+  <button>Add</button>
+</form>

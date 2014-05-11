@@ -15,7 +15,8 @@ var app = new Vue({
   el: 'body',
 
   components: {
-    'app-header': require('./views/header')
+    'app-header': require('./views/header'),
+    'add-repository': require('./views/add_repo')
   },
 
   data: {
@@ -26,10 +27,12 @@ var app = new Vue({
 
 co(function* () {
   var githubController = require('./controllers/github')(app, session);
+  var repoController = require('./controllers/repo')(app, session);
 
   // initialize controllers
   yield [
-    githubController.initialize()
+    githubController.initialize(),
+    repoController.initialize()
   ];
 })();
 

@@ -1,18 +1,22 @@
 var koa = require('koa');
 var send = require('koa-send');
+// XXX: Add different configuration entrypoints!
+var config = require('./config');
 var request = require('superagent-promise');
 var path = require('path');
 var app = koa();
 
-var INDEX = path.resolve(__dirname, '..', 'static', 'index.html');
 
 app.use(require('koa-bodyparser')());
-
-app.use(require('component-koa')({
-  path: '/build/build'
-}));
-
 app.use(require('koa-trie-router')(app));
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(require('component-koa')({
+    path: '/build/build'
+  }));
+}
+// single page app routing...
+var INDEX = path.resolve(__dirname, '..', 'static', 'index.html');
 
 app.use(function* (next) {
   yield next;
@@ -20,26 +24,8 @@ app.use(function* (next) {
   yield send(this, INDEX);
 });
 
-app.post('/github/auth', function* () {
-  console.log(this.request, this.request.body);
-  var code = this.request.body.code;
-
-  // issue a response back to github
-  var req = request.post('https://github.com/login/oauth/access_token');
-  req.query({
-    client_id: '2438bdf53de2aec632cd',
-    client_secret: '3f35b5136b2956af6d6806f0a22435d33933e4e3',
-    code: code
-  });
-
-  req.set('Accept', 'application/json');
-  var res = yield req.end();
-  if (res.error) {
-    console.error(res.error);
-    return this.throw('Could not authenticate with github');
-  }
-  this.body = res.body;
-});
-
+// routing!
+app.post('/github/auth', require('./routes/github_auth')(app, config));
 app.use(require('koa-static')(__dirname + '/../static/'));
+
 app.listen(process.env.PORT || 60023);
