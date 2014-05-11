@@ -1,10 +1,11 @@
 <h1>Taskcluster</h1>
 <menu>
   <li v-show="noGithubUser">
-    <button v-on="click: startLogin">
+    <button v-on="click: login">
   </li>
 
   <li v-show="hasGithubUser">
     <span class="user" v-text="githubUser.login"></span>
+    <button v-on="click: logout">Logout</button>
   </li>
 </menu>

@@ -9,6 +9,13 @@ var AUTHORIZE_URL = '/github/auth';
 
 module.exports = function() {
   return {
+    destroy: function *() {
+      return yield [
+        store.removeItem('github credentials'),
+        store.removeItem('github user')
+      ];
+    },
+
     hasCredentials: function *() {
       return !!(yield this.getCredentials());
     },
