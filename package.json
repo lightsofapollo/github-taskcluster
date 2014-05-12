@@ -14,6 +14,8 @@
   "author": "James Lal [:lightsofapollo]",
   "license": "MIT",
   "dependencies": {
+    "azure-sign": "^0.1.1",
+    "azure-table": "^0.3.0",
     "component": "^1.0.0-rc5",
     "koa": "^0.6.0",
     "koa-body-parser": "^1.0.0",
@@ -22,6 +24,7 @@
     "koa-send": "^1.2.3",
     "koa-static": "^1.4.5",
     "koa-trie-router": "^1.0.5",
+    "octokit": "^0.10.1",
     "promise": "^5.0.0",
     "superagent": "^0.18.0",
     "superagent-promise": "^0.1.1"

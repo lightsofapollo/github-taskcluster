@@ -18,7 +18,7 @@ module.exports = function() {
 
     getClient: function* () {
       var credentails = yield this.getCredentials();
-      return Octokit.new({ token: credentails.access_token });
+      return Octokit.new({ token: credentails.token });
     },
 
     hasCredentials: function *() {

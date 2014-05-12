@@ -1,7 +1,7 @@
 var koa = require('koa');
 var send = require('koa-send');
 // XXX: Add different configuration entrypoints!
-var config = require('./config');
+var config = require('../config/server');
 var request = require('superagent-promise');
 var path = require('path');
 var app = koa();
@@ -26,6 +26,9 @@ app.use(function* (next) {
 
 // routing!
 app.post('/github/auth', require('./routes/github_auth')(app, config));
+app.post('/azure/authorized_repo', require('./routes/azure_authorized')(app, config));
+
+
 app.use(require('koa-static')(__dirname + '/../static/'));
 
 app.listen(process.env.PORT || 60023);

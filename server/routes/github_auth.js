@@ -1,5 +1,8 @@
+var request = require('superagent-promise');
+
 module.exports = function(app, config) {
-  return function* () {
+
+  return function* (next) {
     var code = this.request.body.code;
 
     // issue a response back to github
@@ -12,10 +15,13 @@ module.exports = function(app, config) {
     });
 
     var res = yield req.end();
+
     if (res.error) {
       console.error(res.error);
       return this.throw('Could not authenticate with github');
     }
+    // alias access_token to token
+    res.body.token = res.body.access_token;
     this.body = res.body;
   };
 };

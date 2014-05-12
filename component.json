@@ -15,6 +15,7 @@
     "lightsofapollo/superagent-promise": "~0.1.1",
     "visionmedia/co": "*",
     "polyfills/setimmediate.js": "^1.0.1",
-    "lightsofapollo/octokit.js": "component"
+    "lightsofapollo/octokit.js": "component",
+    "lightsofapollo/azure-table": "0.3.0"
   }
 }
