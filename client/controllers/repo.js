@@ -1,4 +1,5 @@
 var co = require('co');
+var repository = require('../store/repository_owner');
 
 module.exports = function(app, session) {
   var githubRepo = require('../store/github_repo')(session);
@@ -14,7 +15,7 @@ module.exports = function(app, session) {
         return;
       }
 
-      var userOwnsRepo = yield repoStore.ownsRepo(user, repo);
+      var userOwnsRepo = yield githubRepo.ownsRepo(user, repo);
 
       if (!userOwnsRepo) {
         // XXX: l10n
@@ -23,6 +24,20 @@ module.exports = function(app, session) {
       }
 
       view.$data.error = null;
+
+      var repoModel = yield repository.connect({
+        user: user,
+        repository: repo,
+        token: (yield session.getCredentials()).token
+      });
+
+      var exists = yield repoModel.exists();
+
+      if (!exists) {
+        yield repoModel.insert();
+      }
+
+      app.$data.repositories.unshift(repoModel.entity);
     },
 
     initialize: function* () {

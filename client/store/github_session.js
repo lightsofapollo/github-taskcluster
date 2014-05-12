@@ -45,7 +45,7 @@ module.exports = function() {
       return window.location.href = LOGIN_URL;
     },
 
-    authorizeCode: function *(code) {
+    authorizeCode: function* (code) {
       var res = yield request.post(AUTHORIZE_URL).
         send({ code: code }).
         end();

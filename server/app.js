@@ -27,7 +27,7 @@ app.use(function* (next) {
 // routing!
 app.post('/github/auth', require('./routes/github_auth')(app, config));
 app.post('/azure/authorized_repo', require('./routes/azure_authorized')(app, config));
-
+app.post('/azure/unauthorized_repo', require('./routes/azure_unauthorized')(app, config));
 
 app.use(require('koa-static')(__dirname + '/../static/'));
 

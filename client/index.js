@@ -16,23 +16,27 @@ var app = new Vue({
 
   components: {
     'app-header': require('./views/header'),
-    'add-repository': require('./views/add_repo')
+    'add-repository': require('./views/add_repo'),
+    'list-repositories': require('./views/list_repos')
   },
 
   data: {
     githubUser: null,
     githubError: null,
+    repositories: []
   }
 });
 
 co(function* () {
   var githubController = require('./controllers/github')(app, session);
   var repoController = require('./controllers/repo')(app, session);
+  var repoControllerList = require('./controllers/repo_list')(app, session);
 
   // initialize controllers
   yield [
     githubController.initialize(),
-    repoController.initialize()
+    repoController.initialize(),
+    repoControllerList.initialize()
   ];
 })();
 

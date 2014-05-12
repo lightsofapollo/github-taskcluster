@@ -1,8 +1,8 @@
 module.exports = {
 
   azure: {
-    repositoryTable: 'github_taskcluster_repository',
-    authenticationTable: 'github_taskcluster_authentication'
+    repositoryTable: 'githubTaskclusterRepository',
+    authenticationTable: 'githubTaskclusterAuthentication'
   },
 
   github: {
