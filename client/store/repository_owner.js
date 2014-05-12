@@ -12,17 +12,21 @@ function Repository(github, table) {
 
 Repository.prototype = {
 
-  exists: function* () {
+  get: function* () {
     var req = this.table.getEntity(this.entity);
     try {
       var res = yield req.end();
     } catch (e) {
-      if (e.status === 400 || e.status === 404) return false;
+      if (e.status === 400 || e.status === 404) return null;
       throw e;
     }
     this.etag = res.header.etag;
-    this.entity = res.body;
-    return true;
+    return this.entity = res.body;
+  },
+
+  exists: function* () {
+    var entity = yield this.get();
+    return !!entity;
   },
 
   insert: function* () {

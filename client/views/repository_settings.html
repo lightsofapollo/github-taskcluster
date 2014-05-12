@@ -1,0 +1,12 @@
+<form v-attr="disabled : userOwnsRepository">
+  <h1>{{repository.PartitionKey}}/{{repository.RowKey}}</h1>
+  <p class="error" v-text="error" v-if="error">
+  </p>
+
+  <p>
+    <label>
+      <span>Enabled?</span>
+      <input type="checkbox" v-model="repository.enabled" />
+    </label>
+  </p>
+</form>

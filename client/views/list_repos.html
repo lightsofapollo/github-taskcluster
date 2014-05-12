@@ -2,7 +2,9 @@
 <ul>
   <li v-repeat="repositories">
     <span>
-      {{PartitionKey}}/{{RowKey}}
+      <a href="/ui/repo/{{PartitionKey}}/{{RowKey}}/settings/">
+        {{PartitionKey}}/{{RowKey}}
+      </a>
     </span>
   </li>
 </ul>
